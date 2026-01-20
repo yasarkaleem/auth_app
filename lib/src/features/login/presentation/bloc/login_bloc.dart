@@ -44,7 +44,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     try {
       await authRepository.login(state.email, state.password);
-      emit(state.copyWith(isSubmitting: false));
+      emit(state.copyWith(isSubmitting: false, isSuccess: true));
     } catch (e) {
       emit(state.copyWith(isSubmitting: false, errorMessage: e.toString()));
     }

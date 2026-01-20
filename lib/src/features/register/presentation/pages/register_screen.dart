@@ -21,12 +21,11 @@ class RegisterScreen extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
             }
-            if (!state.isSubmitting &&
-                state.isFormValid &&
-                state.name.isNotEmpty) {
-              Navigator.pop(
-                context,
-              ); // Return to login after successful registration
+            if (state.isSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('User registered successfully')),
+              );
+              Navigator.pop(context);
             }
           },
           child: Padding(

@@ -1,8 +1,9 @@
+import 'package:auth_app/src/features/login/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../blocs/auth/auth_bloc.dart';
-import '../../../../../blocs/auth/auth_event.dart';
-import '../../../../../blocs/auth/auth_state.dart';
+import '../../../shared/bloc/auth/auth_bloc.dart';
+import '../../../shared/bloc/auth/auth_event.dart';
+import '../../../shared/bloc/auth/auth_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,6 +18,10 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.logout),
             onPressed: () {
               context.read<AuthBloc>().add(UserLoggedOut());
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => LoginScreen()),
+                (Route<dynamic> route) => false,
+              );
             },
           ),
         ],

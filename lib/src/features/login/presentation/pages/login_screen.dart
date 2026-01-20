@@ -1,5 +1,9 @@
+import 'package:auth_app/repositories/auth_repository.dart';
+import 'package:auth_app/src/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../shared/bloc/auth/auth_bloc.dart';
+import '../../../shared/bloc/auth/auth_event.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
@@ -11,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginBloc(context.read()),
+      create: (_) => LoginBloc(context.read<AuthRepository>()),
       child: Scaffold(
         body: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
@@ -19,6 +23,16 @@ class LoginScreen extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+            }
+            if (state.isSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('User login successfully')),
+              );
+              context.read<AuthBloc>().add(UserLoggedIn());
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => HomeScreen()),
+                (Route<dynamic> route) => false,
+              );
             }
           },
           child: Padding(

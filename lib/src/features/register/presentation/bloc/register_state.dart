@@ -8,6 +8,7 @@ class RegisterState extends Equatable {
   final bool isSubmitting;
   final bool isFormValid;
   final String? errorMessage;
+  final bool isSuccess;
 
   const RegisterState({
     this.name = '',
@@ -17,6 +18,7 @@ class RegisterState extends Equatable {
     this.isSubmitting = false,
     this.isFormValid = false,
     this.errorMessage,
+    this.isSuccess = false,
   });
 
   RegisterState copyWith({
@@ -27,6 +29,7 @@ class RegisterState extends Equatable {
     bool? isSubmitting,
     bool? isFormValid,
     String? errorMessage,
+    bool? isSuccess,
   }) {
     return RegisterState(
       name: name ?? this.name,
@@ -36,9 +39,18 @@ class RegisterState extends Equatable {
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isFormValid: isFormValid ?? this.isFormValid,
       errorMessage: errorMessage ?? this.errorMessage,
+      isSuccess: isSuccess ?? this.isSuccess,
     );
   }
 
   @override
-  List<Object?> get props => [name, username, email, password, isSubmitting, errorMessage];
+  List<Object?> get props => [
+    name,
+    username,
+    email,
+    password,
+    isSubmitting,
+    errorMessage,
+    isSuccess,
+  ];
 }

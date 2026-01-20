@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../repositories/auth_repository.dart';
-import 'auth_event.dart';
+import '../../../../../repositories/auth_repository.dart';
+import './auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -26,7 +26,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onUserLoggedIn(UserLoggedIn event, Emitter<AuthState> emit) async {
+  Future<void> _onUserLoggedIn(
+    UserLoggedIn event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(AuthLoading());
     try {
       final user = await authRepository.getCurrentUser();
@@ -40,7 +43,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onUserLoggedOut(UserLoggedOut event, Emitter<AuthState> emit) async {
+  Future<void> _onUserLoggedOut(
+    UserLoggedOut event,
+    Emitter<AuthState> emit,
+  ) async {
     await authRepository.logout();
     emit(AuthUnauthenticated());
   }
