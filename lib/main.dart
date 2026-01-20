@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'src/features/shared/bloc/auth/auth_bloc.dart';
-import 'src/features/shared/bloc/auth/auth_event.dart';
-import 'src/features/shared/bloc/auth/auth_state.dart';
+import 'src/shared/bloc/auth/auth_bloc.dart';
+import 'src/shared/bloc/auth/auth_event.dart';
+import 'src/shared/bloc/auth/auth_state.dart';
 import 'repositories/auth_repository.dart';
 import 'src/features/login/presentation/pages/login_screen.dart';
 import 'src/features/home/presentation/pages/home_screen.dart';

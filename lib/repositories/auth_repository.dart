@@ -1,5 +1,5 @@
-import '../models/user.dart';
-import '../services/database_service.dart';
+import '../src/shared/models/user.dart';
+import '../src//services/database_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
@@ -25,7 +25,12 @@ class AuthRepository {
     await prefs.setInt('current_user_id', dbUser.id!);
   }
 
-  Future<User> register(String name, String username, String email, String password) async {
+  Future<User> register(
+    String name,
+    String username,
+    String email,
+    String password,
+  ) async {
     final existingUser = await _databaseService.getUser(email);
     if (existingUser != null) {
       throw Exception('Email already exists');

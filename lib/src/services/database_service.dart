@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import '../models/user.dart';
+import '../../src/shared/models/user.dart';
 
 class DatabaseService {
   static Database? _database;
